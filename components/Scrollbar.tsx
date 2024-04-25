@@ -13,7 +13,7 @@ const Scrollbar: React.FC<ScrollbarProps> = ({ sections }) => {
 		useContext(SectionContext);
 
 	return (
-		<motion.div className="fixed right-10 h-dvh flex flex-col gap-2 justify-center z-10">
+		<motion.div className="fixed right-10 h-dvh z-10 grid place-content-center gap-2">
 			{sections.map(({ position, id }) => (
 				<motion.a
 					key={position}
