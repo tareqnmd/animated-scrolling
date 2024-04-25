@@ -1,5 +1,6 @@
 'use client';
-import { ReactNode, createContext, useState } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
+import { ReactNode, createContext, useEffect, useState } from 'react';
 
 export type SectionContextType = {
 	activeSection: number;
@@ -15,6 +16,13 @@ export const SectionContextProvider = ({
 }: {
 	children: ReactNode;
 }) => {
+	const pathname = usePathname();
+	const router = useRouter();
+	useEffect(() => {
+		if (pathname !== '/') {
+			router.push('/');
+		}
+	}, [pathname, router]);
 	const [activeSection, setActiveSection] = useState(0);
 	const [activeSectionProgress, setActiveSectionProgress] = useState(0);
 	return (
