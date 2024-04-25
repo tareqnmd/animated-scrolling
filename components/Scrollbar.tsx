@@ -1,6 +1,7 @@
 'use client';
 import SectionContext from '@/context/SectionContext';
 import { SectionType } from '@/lib/section-data';
+import { cn } from '@/lib/utils';
 import { motion } from 'framer-motion';
 import React, { useContext } from 'react';
 
@@ -18,20 +19,19 @@ const Scrollbar: React.FC<ScrollbarProps> = ({ sections }) => {
 				<motion.a
 					key={position}
 					layout
-					transition={{ duration: 0.3 }}
-					style={{
-						height: activeSection === position ? '32px' : '8px',
-						backgroundColor:
-							activeSection === position ? 'rgb(200,200,200)' : 'rgb(82,82,82)',
-						borderRadius: 9999,
-					}}
+					transition={{ duration: 0.05 }}
 					href={`#${id}`}
-					className="w-2 overflow-hidden cursor-pointer"
+					className={cn(
+						'w-2 overflow-hidden cursor-pointer rounded-full',
+						activeSection === position
+							? 'h-[32px] bg-[#ececec]'
+							: 'h-[8px] bg-[#aaaaaa]'
+					)}
 				>
 					{activeSection === position && (
 						<motion.div
 							style={{ height: `calc(${activeSectionProgress * 100}% + 0px)` }}
-							className="w-full bg-yellow-400"
+							className={cn('w-full bg-yellow-400')}
 						/>
 					)}
 				</motion.a>
